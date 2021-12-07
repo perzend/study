@@ -55,7 +55,7 @@ class _CounterWidgetState extends State<CounterWidget> {
     return Container(
       // 100 px на кнопки + 10 px на каждый символ
       // если поменять fontSize счетчика - поломается
-      width: 100 + _count.toString().length * 10,
+      //width: 100 + _count.toString().length * 10,
       margin: const EdgeInsets.symmetric(vertical: 5),
       decoration: BoxDecoration(
         color: Colors.white,
@@ -72,9 +72,11 @@ class _CounterWidgetState extends State<CounterWidget> {
             },
             icon: const Icon(Icons.remove),
           ),
-          Text(
-            '$_count',
-            style: const TextStyle(fontSize: 18),
+          Expanded(
+            child: Text(
+              '$_count',
+              style: const TextStyle(fontSize: 18),
+            ),
           ),
           IconButton(
             onPressed: () {
