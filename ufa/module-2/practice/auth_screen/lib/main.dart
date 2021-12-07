@@ -22,13 +22,22 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
         body: Container(
           width: double.infinity,
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/images/back.jpg'),
+              fit: BoxFit.cover,
+              colorFilter: ColorFilter.mode(Colors.white60, BlendMode.colorDodge),
+            ),
+          ),
           child: Column(
             children: [
               const SizedBox(height: 60),
               const SizedBox(
                 width: 110,
                 height: 83,
-                child: Placeholder(),
+                child: Image(
+                  image: AssetImage('assets/images/logo.png'),
+                ),
               ),
               const SizedBox(height: 20),
               const Text(
@@ -36,6 +45,7 @@ class MyApp extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 16,
                   color: Color.fromRGBO(0, 0, 0, 0.6),
+                  fontWeight: FontWeight.bold,
                 ),
               ),
               const SizedBox(height: 20),
