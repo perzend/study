@@ -9,6 +9,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const borderStyle = OutlineInputBorder(
+        borderRadius: BorderRadius.all(Radius.circular(36)),
+        borderSide: BorderSide(color: Color(0xFFbbbbbb), width: 2));
+    const linkTextStyle = TextStyle(
+      fontSize: 18,
+      color: Color(0xFF0079D0),
+      fontWeight: FontWeight.bold,
+    );
+
     return MaterialApp(
       home: Scaffold(
         body: Container(
@@ -22,15 +31,24 @@ class MyApp extends StatelessWidget {
                 child: Placeholder(),
               ),
               const SizedBox(height: 20),
-              const Text('Введите логин в виде 10 цифр номера телефона'),
+              const Text(
+                'Введите логин в виде 10 цифр номера телефона',
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Color.fromRGBO(0, 0, 0, 0.6),
+                ),
+              ),
               const SizedBox(height: 20),
               const SizedBox(
                 width: 224,
                 child: TextField(
                   decoration: InputDecoration(
-                      filled: true,
-                      fillColor: Color(0xFFeceff1),
-                      labelText: 'Телефон'),
+                    filled: true,
+                    fillColor: Color(0xFFeceff1),
+                    labelText: 'Телефон',
+                    enabledBorder: borderStyle,
+                    focusedBorder: borderStyle,
+                  ),
                 ),
               ),
               const SizedBox(height: 20),
@@ -41,6 +59,8 @@ class MyApp extends StatelessWidget {
                     filled: true,
                     fillColor: Color(0xFFeceff1),
                     labelText: 'Пароль',
+                    enabledBorder: borderStyle,
+                    focusedBorder: borderStyle,
                   ),
                   obscureText: true,
                 ),
@@ -52,12 +72,28 @@ class MyApp extends StatelessWidget {
                 child: ElevatedButton(
                   onPressed: () {},
                   child: const Text('Войти'),
+                  style: ElevatedButton.styleFrom(
+                    primary: Color(0xFF0079D0),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(36.0),
+                    ),
+                  ),
                 ),
               ),
               const SizedBox(height: 62),
-              InkWell(child: const Text('Регистрация'), onTap: () {}),
+              InkWell(
+                  child: const Text(
+                    'Регистрация',
+                    style: linkTextStyle,
+                  ),
+                  onTap: () {}),
               const SizedBox(height: 20),
-              InkWell(child: const Text('Забыли пароль?'), onTap: () {}),
+              InkWell(
+                  child: const Text(
+                    'Забыли пароль?',
+                    style: linkTextStyle,
+                  ),
+                  onTap: () {}),
             ],
           ),
         ),
