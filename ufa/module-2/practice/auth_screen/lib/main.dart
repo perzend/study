@@ -59,6 +59,7 @@ class MyApp extends StatelessWidget {
               const SizedBox(
                 width: 224,
                 child: TextField(
+                  keyboardType: TextInputType.phone,
                   decoration: InputDecoration(
                     filled: true,
                     fillColor: Color(0xFFeceff1),
