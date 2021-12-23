@@ -40,9 +40,10 @@ class MyApp extends StatelessWidget {
             ),
           ),
           child: SingleChildScrollView(
+            padding: EdgeInsets.symmetric(vertical: 80),
             child: Column(
               children: [
-                const SizedBox(height: 80),
+                //const SizedBox(height: 80),
                 const SizedBox(
                   width: 110,
                   height: 83,
@@ -113,6 +114,7 @@ class MyApp extends StatelessWidget {
                       style: linkTextStyle,
                     ),
                     onTap: () {}),
+               // const SizedBox(height: 80),
               ],
             ),
           ),
