@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -35,7 +36,7 @@ class MyApp extends StatelessWidget {
               image: AssetImage('assets/images/back.jpg'),
               fit: BoxFit.cover,
               colorFilter:
-                  ColorFilter.mode(Colors.white60, BlendMode.colorDodge),
+                  ColorFilter.mode(Colors.white60, BlendMode.lighten),
             ),
           ),
           child: SingleChildScrollView(
@@ -52,8 +53,9 @@ class MyApp extends StatelessWidget {
                 const SizedBox(height: 20),
                 const Text(
                   'Введите логин в виде 10 цифр номера телефона',
+                  textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontSize: 16,
+                    fontSize: 20,
                     color: Color.fromRGBO(0, 0, 0, 0.6),
                     fontWeight: FontWeight.bold,
                   ),
