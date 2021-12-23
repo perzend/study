@@ -29,6 +29,7 @@ class MyApp extends StatelessWidget {
         body: Container(
           width: double.infinity,
           height: double.infinity,
+          padding: const EdgeInsets.symmetric(horizontal: 50),
           decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage('assets/images/back.jpg'),
@@ -58,34 +59,28 @@ class MyApp extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 20),
-                const SizedBox(
-                  width: 224,
-                  child: TextField(
-                    keyboardType: TextInputType.phone,
-                    decoration: InputDecoration(
-                      filled: true,
-                      fillColor: Color(0xFFeceff1),
-                      labelText: 'Телефон',
-                      floatingLabelStyle: floatingLabelStyle,
-                      enabledBorder: borderStyle,
-                      focusedBorder: borderStyle,
-                    ),
+                const TextField(
+                  keyboardType: TextInputType.phone,
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: Color(0xFFeceff1),
+                    labelText: 'Телефон',
+                    floatingLabelStyle: floatingLabelStyle,
+                    enabledBorder: borderStyle,
+                    focusedBorder: borderStyle,
                   ),
                 ),
                 const SizedBox(height: 20),
-                const SizedBox(
-                  width: 224,
-                  child: TextField(
-                    decoration: InputDecoration(
-                      filled: true,
-                      fillColor: Color(0xFFeceff1),
-                      labelText: 'Пароль',
-                      floatingLabelStyle: floatingLabelStyle,
-                      enabledBorder: borderStyle,
-                      focusedBorder: borderStyle,
-                    ),
-                    obscureText: true,
+                const TextField(
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: Color(0xFFeceff1),
+                    labelText: 'Пароль',
+                    floatingLabelStyle: floatingLabelStyle,
+                    enabledBorder: borderStyle,
+                    focusedBorder: borderStyle,
                   ),
+                  obscureText: true,
                 ),
                 const SizedBox(height: 28),
                 SizedBox(
@@ -95,7 +90,7 @@ class MyApp extends StatelessWidget {
                     onPressed: () {},
                     child: const Text('Войти'),
                     style: ElevatedButton.styleFrom(
-                      primary: Color(0xFF0079D0),
+                      primary: const Color(0xFF0079D0),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(36.0),
                       ),
