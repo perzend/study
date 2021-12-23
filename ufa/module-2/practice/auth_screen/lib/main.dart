@@ -18,6 +18,12 @@ class MyApp extends StatelessWidget {
       fontWeight: FontWeight.bold,
     );
 
+    const floatingLabelStyle = TextStyle(
+      color: Colors.blue,
+      fontWeight: FontWeight.bold,
+      fontSize: 18,
+    );
+
     return MaterialApp(
       home: Scaffold(
         body: Container(
@@ -26,7 +32,8 @@ class MyApp extends StatelessWidget {
             image: DecorationImage(
               image: AssetImage('assets/images/back.jpg'),
               fit: BoxFit.cover,
-              colorFilter: ColorFilter.mode(Colors.white60, BlendMode.colorDodge),
+              colorFilter:
+                  ColorFilter.mode(Colors.white60, BlendMode.colorDodge),
             ),
           ),
           child: Column(
@@ -56,6 +63,7 @@ class MyApp extends StatelessWidget {
                     filled: true,
                     fillColor: Color(0xFFeceff1),
                     labelText: 'Телефон',
+                    floatingLabelStyle: floatingLabelStyle,
                     enabledBorder: borderStyle,
                     focusedBorder: borderStyle,
                   ),
@@ -69,6 +77,7 @@ class MyApp extends StatelessWidget {
                     filled: true,
                     fillColor: Color(0xFFeceff1),
                     labelText: 'Пароль',
+                    floatingLabelStyle: floatingLabelStyle,
                     enabledBorder: borderStyle,
                     focusedBorder: borderStyle,
                   ),
