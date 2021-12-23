@@ -10,8 +10,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const borderStyle = OutlineInputBorder(
-        borderRadius: BorderRadius.all(Radius.circular(36)),
-        borderSide: BorderSide(color: Color(0xFFbbbbbb), width: 2));
+      borderRadius: BorderRadius.all(Radius.circular(36)),
+      borderSide: BorderSide(color: Color(0xFFbbbbbb), width: 2),
+    );
+
     const linkTextStyle = TextStyle(
       fontSize: 18,
       color: Color(0xFF0079D0),
@@ -22,7 +24,7 @@ class MyApp extends StatelessWidget {
       color: Colors.blue,
       fontWeight: FontWeight.bold,
       fontSize: 18,
-    );
+    ); // TextStyle
 
     return MaterialApp(
       home: Scaffold(
@@ -34,15 +36,13 @@ class MyApp extends StatelessWidget {
             image: DecorationImage(
               image: AssetImage('assets/images/back.jpg'),
               fit: BoxFit.cover,
-              colorFilter:
-                  ColorFilter.mode(Colors.white60, BlendMode.lighten),
+              colorFilter: ColorFilter.mode(Colors.white60, BlendMode.lighten),
             ),
           ),
           child: SingleChildScrollView(
-            padding: EdgeInsets.symmetric(vertical: 80),
+            padding: const EdgeInsets.symmetric(vertical: 80),
             child: Column(
               children: [
-                //const SizedBox(height: 80),
                 const SizedBox(
                   width: 110,
                   height: 83,
@@ -103,13 +103,12 @@ class MyApp extends StatelessWidget {
                 Material(
                   type: MaterialType.transparency,
                   child: InkWell(
-                    splashColor: Colors.lightBlueAccent,
+                      splashColor: Colors.lightBlueAccent,
                       child: const Text(
                         'Регистрация',
                         style: linkTextStyle,
                       ),
-                      onTap: () {
-                      }),
+                      onTap: () {}),
                 ),
                 const SizedBox(height: 20),
                 Material(
@@ -122,7 +121,6 @@ class MyApp extends StatelessWidget {
                       ),
                       onTap: () {}),
                 ),
-               // const SizedBox(height: 80),
               ],
             ),
           ),
