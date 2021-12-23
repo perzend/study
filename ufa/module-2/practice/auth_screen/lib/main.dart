@@ -28,6 +28,7 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
         body: Container(
           width: double.infinity,
+          height: double.infinity,
           decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage('assets/images/back.jpg'),
@@ -36,85 +37,87 @@ class MyApp extends StatelessWidget {
                   ColorFilter.mode(Colors.white60, BlendMode.colorDodge),
             ),
           ),
-          child: Column(
-            children: [
-              const SizedBox(height: 60),
-              const SizedBox(
-                width: 110,
-                height: 83,
-                child: Image(
-                  image: AssetImage('assets/images/logo.png'),
-                ),
-              ),
-              const SizedBox(height: 20),
-              const Text(
-                'Введите логин в виде 10 цифр номера телефона',
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Color.fromRGBO(0, 0, 0, 0.6),
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const SizedBox(height: 20),
-              const SizedBox(
-                width: 224,
-                child: TextField(
-                  keyboardType: TextInputType.phone,
-                  decoration: InputDecoration(
-                    filled: true,
-                    fillColor: Color(0xFFeceff1),
-                    labelText: 'Телефон',
-                    floatingLabelStyle: floatingLabelStyle,
-                    enabledBorder: borderStyle,
-                    focusedBorder: borderStyle,
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                const SizedBox(height: 80),
+                const SizedBox(
+                  width: 110,
+                  height: 83,
+                  child: Image(
+                    image: AssetImage('assets/images/logo.png'),
                   ),
                 ),
-              ),
-              const SizedBox(height: 20),
-              const SizedBox(
-                width: 224,
-                child: TextField(
-                  decoration: InputDecoration(
-                    filled: true,
-                    fillColor: Color(0xFFeceff1),
-                    labelText: 'Пароль',
-                    floatingLabelStyle: floatingLabelStyle,
-                    enabledBorder: borderStyle,
-                    focusedBorder: borderStyle,
+                const SizedBox(height: 20),
+                const Text(
+                  'Введите логин в виде 10 цифр номера телефона',
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Color.fromRGBO(0, 0, 0, 0.6),
+                    fontWeight: FontWeight.bold,
                   ),
-                  obscureText: true,
                 ),
-              ),
-              const SizedBox(height: 28),
-              SizedBox(
-                width: 154,
-                height: 42,
-                child: ElevatedButton(
-                  onPressed: () {},
-                  child: const Text('Войти'),
-                  style: ElevatedButton.styleFrom(
-                    primary: Color(0xFF0079D0),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(36.0),
+                const SizedBox(height: 20),
+                const SizedBox(
+                  width: 224,
+                  child: TextField(
+                    keyboardType: TextInputType.phone,
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Color(0xFFeceff1),
+                      labelText: 'Телефон',
+                      floatingLabelStyle: floatingLabelStyle,
+                      enabledBorder: borderStyle,
+                      focusedBorder: borderStyle,
                     ),
                   ),
                 ),
-              ),
-              const SizedBox(height: 62),
-              InkWell(
-                  child: const Text(
-                    'Регистрация',
-                    style: linkTextStyle,
+                const SizedBox(height: 20),
+                const SizedBox(
+                  width: 224,
+                  child: TextField(
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Color(0xFFeceff1),
+                      labelText: 'Пароль',
+                      floatingLabelStyle: floatingLabelStyle,
+                      enabledBorder: borderStyle,
+                      focusedBorder: borderStyle,
+                    ),
+                    obscureText: true,
                   ),
-                  onTap: () {}),
-              const SizedBox(height: 20),
-              InkWell(
-                  child: const Text(
-                    'Забыли пароль?',
-                    style: linkTextStyle,
+                ),
+                const SizedBox(height: 28),
+                SizedBox(
+                  width: 154,
+                  height: 42,
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    child: const Text('Войти'),
+                    style: ElevatedButton.styleFrom(
+                      primary: Color(0xFF0079D0),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(36.0),
+                      ),
+                    ),
                   ),
-                  onTap: () {}),
-            ],
+                ),
+                const SizedBox(height: 62),
+                InkWell(
+                    child: const Text(
+                      'Регистрация',
+                      style: linkTextStyle,
+                    ),
+                    onTap: () {}),
+                const SizedBox(height: 20),
+                InkWell(
+                    child: const Text(
+                      'Забыли пароль?',
+                      style: linkTextStyle,
+                    ),
+                    onTap: () {}),
+              ],
+            ),
           ),
         ),
       ),
