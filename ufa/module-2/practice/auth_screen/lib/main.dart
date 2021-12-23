@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -101,19 +100,28 @@ class MyApp extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 62),
-                InkWell(
-                    child: const Text(
-                      'Регистрация',
-                      style: linkTextStyle,
-                    ),
-                    onTap: () {}),
+                Material(
+                  type: MaterialType.transparency,
+                  child: InkWell(
+                    splashColor: Colors.lightBlueAccent,
+                      child: const Text(
+                        'Регистрация',
+                        style: linkTextStyle,
+                      ),
+                      onTap: () {
+                      }),
+                ),
                 const SizedBox(height: 20),
-                InkWell(
-                    child: const Text(
-                      'Забыли пароль?',
-                      style: linkTextStyle,
-                    ),
-                    onTap: () {}),
+                Material(
+                  type: MaterialType.transparency,
+                  child: InkWell(
+                      splashColor: Colors.lightBlueAccent,
+                      child: const Text(
+                        'Забыли пароль?',
+                        style: linkTextStyle,
+                      ),
+                      onTap: () {}),
+                ),
                // const SizedBox(height: 80),
               ],
             ),
