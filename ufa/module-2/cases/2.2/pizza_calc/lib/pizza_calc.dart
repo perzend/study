@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 
@@ -18,7 +19,7 @@ class _PizzaCalcState extends State<PizzaCalc> {
   bool _cheeseChek = true;
   int _paste = 1; // 0 - normal, 1 - thin
   double _sizePizza = 400;
-  
+
   final Color _backColor = const Color(0xFFECEFF1);
   final Color _activeColor = const Color(0xFF0079D0);
   final Color _activeColorRadio = const Color(0xFF5DB075);
@@ -60,7 +61,7 @@ class _PizzaCalcState extends State<PizzaCalc> {
                 ),
                 const SizedBox(height: 5),
                 _choiceSizePizza(),
-                const SizedBox(height: 33),
+                //const SizedBox(height: 33),
 
                 // Выбор соуса
                 Container(
@@ -159,71 +160,67 @@ class _PizzaCalcState extends State<PizzaCalc> {
 
   //Виджет выбора размера пиццы
   Stack _choiceSizePizza() {
-    return Stack(children: [
-      Center(
-        child: Container(
-          width: 300,
-          height: 34,
-          decoration: BoxDecoration(
-            color: _backColor,
-            borderRadius: BorderRadius.circular(36.0),
+    return Stack(alignment: Alignment.topCenter, children: [
+      Container(
+        width: 300,
+        height: 34,
+        decoration: BoxDecoration(
+          color: _backColor,
+          borderRadius: BorderRadius.circular(36.0),
+        ),
+      ),
+      SizedBox(
+        width: 300,
+        height: 60,
+        child: SliderTheme(
+          data: SliderThemeData(
+            trackHeight: 5.0,
+            thumbShape: const CustomThumbShape(),
+            overlayShape: const RoundSliderOverlayShape(overlayRadius: 0.0),
+            thumbColor: _activeColor,
           ),
-          child: SliderTheme(
-            data: SliderThemeData(
-              trackHeight: 6.0,
-              thumbShape: const CustomThumbShape(),
-              overlayShape: const RoundSliderOverlayShape(overlayRadius: 0.0),
-              thumbColor: _activeColor,
-            ),
-            child: Align(
-              alignment: Alignment.bottomCenter,
-              child: SizedBox(
-                height: 8,
-                width: 280,
-                child: Slider(
-                  min: 300,
-                  max: 500,
-                  value: _sizePizza,
-                  onChanged: (value) {
-                    setState(() {
-                      _sizePizza = value;
-                    });
-                  },
-                ),
-              ),
-            ),
+          child: Slider(
+            inactiveColor: _backColor,
+            min: 300,
+            max: 500,
+            value: _sizePizza,
+            onChanged: (value) {
+              setState(() {
+                _sizePizza = value;
+              });
+            },
           ),
         ),
       ),
-      Container(
-          alignment: Alignment.center,
-          padding: const EdgeInsets.only(top: 6.0),
-          child: Text(
-            _nameSizePizza(sizePizza: _sizePizza),
-          )),
+      Padding(
+        padding: const EdgeInsets.only(top: 6.0),
+        child: Text(
+          _nameSizePizza(sizePizza: _sizePizza),
+        ),
+      ),
     ]);
   }
 
   // Виджет выбора соуса
   Column _choiceSauce() {
-
-    void _onChangedSauces (Sauces? value) {
+    void _onChangedSauces(Sauces? value) {
       setState(() {
         _sauces = value;
-      });}
+      });
+    }
 
     return Column(
       children: [
         RadioListTile<Sauces>(
-            activeColor: _activeColorRadio,
-            controlAffinity: ListTileControlAffinity.trailing,
-            title: const Text(
-              'Острый',
-              style: TextStyle(fontSize: 16.0),
-            ),
-            value: Sauces.spicy,
-            groupValue: _sauces,
-            onChanged: _onChangedSauces,
+          activeColor: _activeColorRadio,
+          controlAffinity: ListTileControlAffinity.trailing,
+          title: const Text(
+            'Острый',
+            style: TextStyle(fontSize: 16.0),
+          ),
+          value: Sauces.spicy,
+          groupValue: _sauces,
+          onChanged: _onChangedSauces,
         ),
         const Divider(
           height: 0,
@@ -231,15 +228,15 @@ class _PizzaCalcState extends State<PizzaCalc> {
           thickness: 1,
         ),
         RadioListTile<Sauces>(
-            activeColor: _activeColorRadio,
-            controlAffinity: ListTileControlAffinity.trailing,
-            title: const Text(
-              'Кисло-сладкий',
-              style: TextStyle(fontSize: 16.0),
-            ),
-            value: Sauces.sweetSour,
-            groupValue: _sauces,
-            onChanged: _onChangedSauces,
+          activeColor: _activeColorRadio,
+          controlAffinity: ListTileControlAffinity.trailing,
+          title: const Text(
+            'Кисло-сладкий',
+            style: TextStyle(fontSize: 16.0),
+          ),
+          value: Sauces.sweetSour,
+          groupValue: _sauces,
+          onChanged: _onChangedSauces,
         ),
         const Divider(
           height: 0,
@@ -247,15 +244,15 @@ class _PizzaCalcState extends State<PizzaCalc> {
           thickness: 1,
         ),
         RadioListTile<Sauces>(
-            activeColor: _activeColorRadio,
-            controlAffinity: ListTileControlAffinity.trailing,
-            title: const Text(
-              'Сырный',
-              style: TextStyle(fontSize: 16.0),
-            ),
-            value: Sauces.cheese,
-            groupValue: _sauces,
-            onChanged: _onChangedSauces,
+          activeColor: _activeColorRadio,
+          controlAffinity: ListTileControlAffinity.trailing,
+          title: const Text(
+            'Сырный',
+            style: TextStyle(fontSize: 16.0),
+          ),
+          value: Sauces.cheese,
+          groupValue: _sauces,
+          onChanged: _onChangedSauces,
         ),
       ],
     );
@@ -272,7 +269,10 @@ class _PizzaCalcState extends State<PizzaCalc> {
           _cheeseChek = !_cheeseChek;
         });
       },
-      title: const Text('Дополнительный сыр', textAlign: TextAlign.center,),
+      title: const Text(
+        'Дополнительный сыр',
+        textAlign: TextAlign.center,
+      ),
       secondary: Image.asset('./assets/images/cheese.png'),
     );
   }
@@ -347,7 +347,7 @@ class CustomThumbShape extends SliderComponentShape {
 
   @override
   Size getPreferredSize(bool isEnabled, bool isDiscrete) {
-    return const Size(0, 0);
+    return const Size(20, 60);
   }
 
   @override
@@ -368,11 +368,11 @@ class CustomThumbShape extends SliderComponentShape {
       ..style = PaintingStyle.fill;
 
     final path = Path();
-    path.moveTo(center.dx, center.dy - 4);
-    path.lineTo(center.dx + 8, center.dy + 6);
-    path.lineTo(center.dx + 8, center.dy + 22);
-    path.lineTo(center.dx - 8, center.dy + 22);
-    path.lineTo(center.dx - 8, center.dy + 6);
+    path.moveTo(center.dx, center.dy - 3);
+    path.lineTo(center.dx + 7, center.dy + 7);
+    path.lineTo(center.dx + 7, center.dy + 21);
+    path.lineTo(center.dx - 7, center.dy + 21);
+    path.lineTo(center.dx - 7, center.dy + 7);
     path.close();
 
     canvas.drawPath(path, paint);
