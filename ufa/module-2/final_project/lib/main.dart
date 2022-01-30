@@ -5,9 +5,11 @@ import 'package:final_project/module/users/users_list_view.dart';
 import 'package:final_project/services/secure_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:final_project/routes/routes.dart';
+import 'package:flutter/services.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   final SecureStorage secureStorage = SecureStorage();
   String? loginStatus;
   loginStatus = await secureStorage.readSecureData('login_status');
@@ -18,8 +20,8 @@ void main() async {
   String? pwd;
   pwd = await secureStorage.readSecureData('pwd');
 
-  print(loginStatus);
   runApp(MaterialApp(
+    debugShowCheckedModeBanner: false,
     home: loginStatus == 'isOK' ? WelcomePage(phone: phone,) : AuthPage(phone: phone, pwd: pwd),
     routes: {
       Routes.usersList: (context) => UsersListPage(),
