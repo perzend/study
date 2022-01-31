@@ -13,11 +13,6 @@ class AuthPage extends StatefulWidget {
   String? phone;
   String? pwd;
 
-// class AuthPage extends StatefulWidget {
-//   const AuthPage({
-//     Key? key,
-//   }) : super(key: key);
-//   static const String routeName = '/authPage';
 
   @override
   _AuthPageState createState() => _AuthPageState();
@@ -34,14 +29,11 @@ class _AuthPageState extends State<AuthPage> {
   bool _loginButtonEnabled = false;
   bool _colorButton = false;
 
-  // String? _phone;
-  // String? _pwd;
 
   @override
   void initState() {
     _getPhone();
     _getPwd();
-//_getAll();
     super.initState();
   }
 
@@ -51,12 +43,6 @@ class _AuthPageState extends State<AuthPage> {
     _pwdController.dispose();
     super.dispose();
   }
-
-  // Future _getAll () async {
-  //
-  //   _secureStorage.readAll();
-  //
-  // }
 
   Future _getPhone() async {
     widget.phone = await _secureStorage.readSecureData('phone');
@@ -79,7 +65,7 @@ class _AuthPageState extends State<AuthPage> {
     return Scaffold(
       body: Stack(children: [
         Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage("assets/images/back4.jpg"),
               fit: BoxFit.cover,
@@ -95,27 +81,27 @@ class _AuthPageState extends State<AuthPage> {
                     'Please, log in\nor register',
                     style: Theme.of(context).textTheme.headline4,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 8,
                   ),
                   Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: TextField(
                       controller: _phoneController,
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontSize: 28.0,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 3),
                       decoration: InputDecoration(
                         contentPadding:
-                            EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+                            const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
                         prefixText: '+7 ',
                         labelText: 'Type a phone number',
-                        labelStyle: TextStyle(fontSize: 16.0, letterSpacing: 1),
+                        labelStyle: const TextStyle(fontSize: 16.0, letterSpacing: 1),
                         errorText: _errorPhoneValidate
                             ? 'Must be at least 10 digits'
                             : null,
-                        errorStyle: TextStyle(
+                        errorStyle: const TextStyle(
                             fontWeight: FontWeight.bold, letterSpacing: 1),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(16.0),
@@ -145,19 +131,19 @@ class _AuthPageState extends State<AuthPage> {
                     padding: const EdgeInsets.all(16.0),
                     child: TextField(
                       controller: _pwdController,
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontSize: 28.0,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 3),
                       decoration: InputDecoration(
                         contentPadding:
-                            EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+                            const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
                         labelText: 'Type a password',
-                        labelStyle: TextStyle(fontSize: 16.0, letterSpacing: 1),
+                        labelStyle: const TextStyle(fontSize: 16.0, letterSpacing: 1),
                         errorText: _errorPwdValidate
                             ? 'Must be at least 6 digits'
                             : null,
-                        errorStyle: TextStyle(
+                        errorStyle: const TextStyle(
                             fontWeight: FontWeight.bold, letterSpacing: 1),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(16.0),
@@ -185,7 +171,7 @@ class _AuthPageState extends State<AuthPage> {
                       },
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 32,
                   ),
                   Row(
@@ -205,11 +191,6 @@ class _AuthPageState extends State<AuthPage> {
                                         MaterialStateProperty.all(Colors.grey)),
                             onPressed: () {
                               if (_loginButtonEnabled) {
-                                print(_phoneController.text);
-                                print(widget.phone);
-                                print(_pwdController.text);
-                                print(widget.pwd);
-
                                 if (_phoneController.text != widget.phone) {
                                   showDialog(
                                       context: context,
@@ -272,7 +253,7 @@ class _AuthPageState extends State<AuthPage> {
                                 null;
                               }
                             },
-                            child: Text('Login'),
+                            child: const Text('Login'),
                           ),
                         ),
                       ),
@@ -358,7 +339,7 @@ class _AuthPageState extends State<AuthPage> {
                                 }
                               }
                             },
-                            child: Text('Register'),
+                            child: const Text('Register'),
                           ),
                         ),
                       ),

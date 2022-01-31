@@ -53,7 +53,7 @@ class _WelcomePageState extends State<WelcomePage> {
       body: Stack(
         children: [
           Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               image: DecorationImage(
                 image: AssetImage("assets/images/back4.jpg"),
                 fit: BoxFit.cover,
@@ -72,7 +72,7 @@ class _WelcomePageState extends State<WelcomePage> {
               Text(
                 widget.phone!,
                 textAlign: TextAlign.center,
-                style: TextStyle(color: Colors.deepPurpleAccent, fontSize: 30.0),
+                style: const TextStyle(color: Colors.deepPurpleAccent, fontSize: 30.0),
               ),
               const SizedBox(
                 height: 32.0,

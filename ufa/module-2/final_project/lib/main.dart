@@ -21,12 +21,13 @@ void main() async {
   pwd = await secureStorage.readSecureData('pwd');
 
   runApp(MaterialApp(
+    theme: ThemeData(appBarTheme: const AppBarTheme(color: Colors.grey)),
     debugShowCheckedModeBanner: false,
-    home: loginStatus == 'isOK' ? WelcomePage(phone: phone,) : AuthPage(phone: phone, pwd: pwd),
+    home: loginStatus == 'isOK' ? WelcomePage(phone: phone,) : AuthPage(phone:phone, pwd:pwd),
     routes: {
-      Routes.usersList: (context) => UsersListPage(),
+      Routes.usersList: (context) => const UsersListPage(),
       Routes.settings: (context) => SettingsPage(),
-      Routes.authPage: (context) => AuthPage(phone: phone, pwd: pwd),
+      Routes.authPage: (context) => AuthPage(phone:phone, pwd:pwd),
     },
   ));
 }
