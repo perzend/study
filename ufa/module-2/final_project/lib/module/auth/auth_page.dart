@@ -1,6 +1,7 @@
 import 'package:final_project/routes/routes.dart';
 import 'package:final_project/services/secure_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class AuthPage extends StatefulWidget {
   AuthPage(
@@ -109,6 +110,9 @@ class _AuthPageState extends State<AuthPage> {
                       ),
                       keyboardType: TextInputType.phone,
                       textInputAction: TextInputAction.next,
+                      inputFormatters: [
+                        FilteringTextInputFormatter.digitsOnly
+                      ],
                       maxLength: 10,
                       onChanged: (text) {
                         setState(() {
