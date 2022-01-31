@@ -50,44 +50,55 @@ class _WelcomePageState extends State<WelcomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              'Welcome to Final App!\n Your login is:',
-              textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.headline5,
+      body: Stack(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage("assets/images/back4.jpg"),
+                fit: BoxFit.cover,
+              ),
             ),
-            Text(
-              widget.phone!,
-              textAlign: TextAlign.center,
-              style: TextStyle(color: Colors.deepPurpleAccent, fontSize: 30.0),
-            ),
-            const SizedBox(
-              height: 32.0,
-            ),
-            Stack(
-              alignment: AlignmentDirectional.center,
-              children: [
-                SizedBox(
-                  width: 100,
-                  height: 50,
-                  child: CircularProgressIndicator(
-                    value: _startTimer * 0.2,
-                    color: Colors.red,
-                    backgroundColor: Colors.blue,
-                    strokeWidth: 10.0,
+          ),
+          Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'Welcome to Final App!\n Your login is:',
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.headline5,
+              ),
+              Text(
+                widget.phone!,
+                textAlign: TextAlign.center,
+                style: TextStyle(color: Colors.deepPurpleAccent, fontSize: 30.0),
+              ),
+              const SizedBox(
+                height: 32.0,
+              ),
+              Stack(
+                alignment: AlignmentDirectional.center,
+                children: [
+                  SizedBox(
+                    width: 100,
+                    height: 50,
+                    child: CircularProgressIndicator(
+                      value: _startTimer * 0.2,
+                      color: Colors.red,
+                      backgroundColor: Colors.blue,
+                      strokeWidth: 10.0,
+                    ),
                   ),
-                ),
-                Text(
-                  '$_startTimer',
-                  style: Theme.of(context).textTheme.headline4,
-                ),
-              ],
-            )
-          ],
-        ),
+                  Text(
+                    '$_startTimer',
+                    style: Theme.of(context).textTheme.headline4,
+                  ),
+                ],
+              )
+            ],
+          ),
+        ),]
       ),
     );
   }

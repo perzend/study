@@ -2,30 +2,30 @@ import 'package:final_project/routes/routes.dart';
 import 'package:final_project/services/secure_storage.dart';
 import 'package:flutter/material.dart';
 
-// class AuthPage extends StatefulWidget {
-//   AuthPage(
-//       {Key? key,
-//       required this.phone,
-//       required this.pwd})
-//       : super(key: key);
-//   static const String routeName = '/authPage';
-//
-//   String? phone;
-//   final String? pwd;
-
 class AuthPage extends StatefulWidget {
-  const AuthPage({
-    Key? key,
-  }) : super(key: key);
+  AuthPage(
+      {Key? key,
+      required this.phone,
+      required this.pwd})
+      : super(key: key);
   static const String routeName = '/authPage';
+
+  String? phone;
+  String? pwd;
+
+// class AuthPage extends StatefulWidget {
+//   const AuthPage({
+//     Key? key,
+//   }) : super(key: key);
+//   static const String routeName = '/authPage';
 
   @override
   _AuthPageState createState() => _AuthPageState();
 }
 
 class _AuthPageState extends State<AuthPage> {
-  late TextEditingController _phoneController;
-  late TextEditingController _pwdController;
+  final TextEditingController _phoneController =TextEditingController();
+  final TextEditingController _pwdController=TextEditingController();
 
   final SecureStorage _secureStorage = SecureStorage();
 
@@ -34,15 +34,14 @@ class _AuthPageState extends State<AuthPage> {
   bool _loginButtonEnabled = false;
   bool _colorButton = false;
 
-  String? _phone;
-  String? _pwd;
+  // String? _phone;
+  // String? _pwd;
 
   @override
   void initState() {
     _getPhone();
     _getPwd();
-    _phoneController = TextEditingController();
-    _pwdController = TextEditingController();
+//_getAll();
     super.initState();
   }
 
@@ -53,12 +52,18 @@ class _AuthPageState extends State<AuthPage> {
     super.dispose();
   }
 
+  // Future _getAll () async {
+  //
+  //   _secureStorage.readAll();
+  //
+  // }
+
   Future _getPhone() async {
-    _phone = await _secureStorage.readSecureData('phone');
+    widget.phone = await _secureStorage.readSecureData('phone');
   }
 
   Future _getPwd() async {
-    _pwd = await _secureStorage.readSecureData('pwd');
+   widget.pwd = await _secureStorage.readSecureData('pwd');
   }
 
   bool _checkTextOnChanged(String text, int count) {
@@ -201,11 +206,11 @@ class _AuthPageState extends State<AuthPage> {
                             onPressed: () {
                               if (_loginButtonEnabled) {
                                 print(_phoneController.text);
-                                print(_phone);
+                                print(widget.phone);
                                 print(_pwdController.text);
-                                print(_pwd);
+                                print(widget.pwd);
 
-                                if (_phoneController.text != _phone) {
+                                if (_phoneController.text != widget.phone) {
                                   showDialog(
                                       context: context,
                                       builder: (context) {
@@ -231,7 +236,7 @@ class _AuthPageState extends State<AuthPage> {
                                         );
                                       });
                                 } else {
-                                  if (_pwdController.text != _pwd) {
+                                  if (_pwdController.text != widget.pwd) {
                                     showDialog(
                                         context: context,
                                         builder: (context) {
@@ -276,7 +281,7 @@ class _AuthPageState extends State<AuthPage> {
                           padding:
                               const EdgeInsets.only(left: 8.0, right: 16.0),
                           child: ElevatedButton(
-                            style: _phone != null
+                            style: widget.phone != null
                                 ? ButtonStyle(
                                     backgroundColor:
                                         MaterialStateProperty.all(Colors.grey))
@@ -284,7 +289,7 @@ class _AuthPageState extends State<AuthPage> {
                                     backgroundColor:
                                         MaterialStateProperty.all(Colors.blue)),
                             onPressed: () {
-                              if (_phone != null) {
+                              if (widget.phone != null) {
                                 null;
                               } else {
                                 if (_phoneController.text.length == 10 &&
@@ -371,7 +376,7 @@ class _AuthPageState extends State<AuthPage> {
 
   // Выводит соответствующую надпись, если пользователь уже создан или ничего, если не создан
   Widget _demoModeAlert() {
-    return _phone != null
+    return widget.phone != null
         ? const Text(
             'Only one user in demo mode',
             style: TextStyle(

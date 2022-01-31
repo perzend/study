@@ -9,28 +9,40 @@ class NavDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      child: ListView(
-        padding: EdgeInsets.zero,
+      child: Stack(
         children: [
-          _createHeader(),
-          _createDrawerItem(
-              icon: Icons.people,
-              text: 'List of users',
-              onTap: () =>
-                  Navigator.pushReplacementNamed(context, Routes.usersList)),
-          _createDrawerItem(
-              icon: Icons.settings,
-              text: 'Settings',
-              onTap: () =>
-                  Navigator.pushReplacementNamed(context, Routes.settings)),
-          _createDrawerItem(
-              icon: Icons.logout,
-              text: 'Logout',
-              onTap: () {
-                _secureStorage.deleteSecureData('login_status');
-                Navigator.pushReplacementNamed(context, Routes.authPage);
-              })
-        ],
+          Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage("assets/images/back3.jpg"),
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+          ListView(
+            padding: EdgeInsets.zero,
+            children: [
+              _createHeader(),
+              _createDrawerItem(
+                  icon: Icons.people,
+                  text: 'List of users',
+                  onTap: () =>
+                      Navigator.pushReplacementNamed(context, Routes.usersList)),
+              _createDrawerItem(
+                  icon: Icons.settings,
+                  text: 'Settings',
+                  onTap: () =>
+                      Navigator.pushReplacementNamed(context, Routes.settings)),
+              _createDrawerItem(
+                  icon: Icons.logout,
+                  text: 'Logout',
+                  onTap: () {
+                    _secureStorage.deleteSecureData('login_status');
+                    Navigator.pushReplacementNamed(context, Routes.authPage);
+                  })
+            ],
+          ),
+        ]
       ),
     );
   }
@@ -38,22 +50,13 @@ class NavDrawer extends StatelessWidget {
 
 Widget _createHeader() {
   return DrawerHeader(
-    child: SizedBox(
-      height: 200,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          SizedBox(
-            height: 100,
-            child: Image.network(
-              'https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Google-flutter-logo.svg/320px-Google-flutter-logo.svg.png',
-            ),
-          ),
-          const Text('Навигация во Flutter'),
-        ],
-      ),
-    ),
+    decoration:  BoxDecoration(
+  image: DecorationImage(
+  image: AssetImage("assets/images/back5.jpg"),
+  fit: BoxFit.cover,
+  ),
+  ),
+child: Text('FINAL_PROJECT',),
   );
 }
 
@@ -61,5 +64,5 @@ Widget _createDrawerItem(
     {required IconData icon,
     required String text,
     required GestureTapCallback onTap}) {
-  return ListTile(leading: Icon(icon), title: Text(text), onTap: onTap);
+  return ListTile(leading: Icon(icon), title: Text(text, style: TextStyle(fontSize: 24.0),), onTap: onTap);
 }
