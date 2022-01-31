@@ -3,8 +3,10 @@ import 'package:final_project/services/secure_storage.dart';
 import 'package:final_project/widgets/drawer.dart';
 import 'package:flutter/material.dart';
 
+
+// При нажатии на кнопку удаляем все данные в сторадже и переходим на страницу авторизации
 class SettingsPage extends StatelessWidget {
-   SettingsPage({Key? key}) : super(key: key);
+  SettingsPage({Key? key}) : super(key: key);
 
   static const String routeName = '/settings';
 
@@ -15,14 +17,13 @@ class SettingsPage extends StatelessWidget {
     return Scaffold(
       drawer: NavDrawer(),
       appBar: AppBar(),
-      body: Column(
-        children: [
-          ElevatedButton(
-              onPressed: () {
-
-              },
-              child: Text('Logout'))
-        ],
+      body: Center(
+        child: ElevatedButton(
+            onPressed: () {
+              _secureStorage.deleteAll();
+              Navigator.pushReplacementNamed(context, Routes.authPage);
+            },
+            child: const Text('Delete user')),
       ),
     );
   }
