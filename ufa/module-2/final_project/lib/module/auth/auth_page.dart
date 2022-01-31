@@ -4,24 +4,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class AuthPage extends StatefulWidget {
-  AuthPage(
-      {Key? key,
-      required this.phone,
-      required this.pwd})
+  AuthPage({Key? key, required this.phone, required this.pwd})
       : super(key: key);
   static const String routeName = '/authPage';
 
   String? phone;
   String? pwd;
 
-
   @override
   _AuthPageState createState() => _AuthPageState();
 }
 
 class _AuthPageState extends State<AuthPage> {
-  final TextEditingController _phoneController =TextEditingController();
-  final TextEditingController _pwdController=TextEditingController();
+  final TextEditingController _phoneController = TextEditingController();
+  final TextEditingController _pwdController = TextEditingController();
 
   final SecureStorage _secureStorage = SecureStorage();
 
@@ -29,7 +25,6 @@ class _AuthPageState extends State<AuthPage> {
   bool _errorPwdValidate = false;
   bool _loginButtonEnabled = false;
   bool _colorButton = false;
-
 
   @override
   void initState() {
@@ -50,7 +45,7 @@ class _AuthPageState extends State<AuthPage> {
   }
 
   Future _getPwd() async {
-   widget.pwd = await _secureStorage.readSecureData('pwd');
+    widget.pwd = await _secureStorage.readSecureData('pwd');
   }
 
   bool _checkTextOnChanged(String text, int count) {
@@ -85,6 +80,7 @@ class _AuthPageState extends State<AuthPage> {
                   const SizedBox(
                     height: 8,
                   ),
+                  // Текстовое поле ввода номера телефона
                   Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: TextField(
@@ -94,11 +90,12 @@ class _AuthPageState extends State<AuthPage> {
                           fontWeight: FontWeight.bold,
                           letterSpacing: 3),
                       decoration: InputDecoration(
-                        contentPadding:
-                            const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+                        contentPadding: const EdgeInsets.symmetric(
+                            vertical: 10, horizontal: 16),
                         prefixText: '+7 ',
                         labelText: 'Type a phone number',
-                        labelStyle: const TextStyle(fontSize: 16.0, letterSpacing: 1),
+                        labelStyle:
+                            const TextStyle(fontSize: 16.0, letterSpacing: 1),
                         errorText: _errorPhoneValidate
                             ? 'Must be at least 10 digits'
                             : null,
@@ -110,9 +107,7 @@ class _AuthPageState extends State<AuthPage> {
                       ),
                       keyboardType: TextInputType.phone,
                       textInputAction: TextInputAction.next,
-                      inputFormatters: [
-                        FilteringTextInputFormatter.digitsOnly
-                      ],
+                      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                       maxLength: 10,
                       onChanged: (text) {
                         setState(() {
@@ -131,6 +126,7 @@ class _AuthPageState extends State<AuthPage> {
                       },
                     ),
                   ),
+                  // Текстовое поле ввода пароля
                   Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: TextField(
@@ -140,10 +136,11 @@ class _AuthPageState extends State<AuthPage> {
                           fontWeight: FontWeight.bold,
                           letterSpacing: 3),
                       decoration: InputDecoration(
-                        contentPadding:
-                            const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+                        contentPadding: const EdgeInsets.symmetric(
+                            vertical: 10, horizontal: 16),
                         labelText: 'Type a password',
-                        labelStyle: const TextStyle(fontSize: 16.0, letterSpacing: 1),
+                        labelStyle:
+                            const TextStyle(fontSize: 16.0, letterSpacing: 1),
                         errorText: _errorPwdValidate
                             ? 'Must be at least 6 digits'
                             : null,
@@ -196,55 +193,21 @@ class _AuthPageState extends State<AuthPage> {
                             onPressed: () {
                               if (_loginButtonEnabled) {
                                 if (_phoneController.text != widget.phone) {
-                                  showDialog(
-                                      context: context,
-                                      builder: (context) {
-                                        return AlertDialog(
-                                          title: Text('Login error!',
-                                              textAlign: TextAlign.center,
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .headline5),
-                                          content: Text(
-                                            'The phone number is entered incorrectly or does not exist. Please try again.',
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodyText1,
-                                          ),
-                                          actions: [
-                                            TextButton(
-                                                onPressed: () {
-                                                  Navigator.pop(context);
-                                                },
-                                                child: const Text('OK'))
-                                          ],
-                                        );
+                                  _showAlertDialog(
+                                      title: 'Login error!',
+                                      content:
+                                          'The phone number is entered incorrectly or does not exist. Please try again.',
+                                      onPressed: () {
+                                        Navigator.pop(context);
                                       });
                                 } else {
                                   if (_pwdController.text != widget.pwd) {
-                                    showDialog(
-                                        context: context,
-                                        builder: (context) {
-                                          return AlertDialog(
-                                            title: Text('Password error!',
-                                                textAlign: TextAlign.center,
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .headline5),
-                                            content: Text(
-                                              'Invalid password entered. Please try again.',
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .bodyText1,
-                                            ),
-                                            actions: [
-                                              TextButton(
-                                                  onPressed: () {
-                                                    Navigator.pop(context);
-                                                  },
-                                                  child: const Text('OK'))
-                                            ],
-                                          );
+                                    _showAlertDialog(
+                                        title: 'Password error!',
+                                        content:
+                                            'Invalid password entered. Please try again.',
+                                        onPressed: () {
+                                          Navigator.pop(context);
                                         });
                                   } else {
                                     _secureStorage.writeSecureData(
@@ -283,62 +246,22 @@ class _AuthPageState extends State<AuthPage> {
                                       'phone', _phoneController.text);
                                   _secureStorage.writeSecureData(
                                       'pwd', _pwdController.text);
-                                  showDialog(
-                                      context: context,
-                                      builder: (context) {
-                                        return AlertDialog(
-                                          title: Text(
-                                              'Registration was successful!',
-                                              textAlign: TextAlign.center,
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .headline5),
-                                          content: Text(
-                                            'Now you will be redirected to the main page of the application.',
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodyText1,
-                                          ),
-                                          actions: [
-                                            TextButton(
-                                                onPressed: () {
-                                                  _secureStorage
-                                                      .writeSecureData(
-                                                          'login_status',
-                                                          'isOK');
-                                                  Navigator
-                                                      .pushReplacementNamed(
-                                                          context,
-                                                          Routes.usersList);
-                                                },
-                                                child: const Text('OK'))
-                                          ],
-                                        );
+                                  _showAlertDialog(
+                                      title: 'Registration was successful!',
+                                      content:
+                                          'Now you will be redirected to the main page of the application.',
+                                      onPressed: () {
+                                        _secureStorage.writeSecureData(
+                                            'login_status', 'isOK');
+                                        Navigator.pushReplacementNamed(
+                                            context, Routes.usersList);
                                       });
                                 } else {
-                                  showDialog(
-                                      context: context,
-                                      builder: (context) {
-                                        return AlertDialog(
-                                          title: Text('Registration failed!',
-                                              textAlign: TextAlign.center,
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .headline5),
-                                          content: Text(
-                                            'Check your registration data.',
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodyText1,
-                                          ),
-                                          actions: [
-                                            TextButton(
-                                                onPressed: () {
-                                                  Navigator.pop(context);
-                                                },
-                                                child: const Text('OK'))
-                                          ],
-                                        );
+                                  _showAlertDialog(
+                                      title: 'Registration failed!',
+                                      content: 'Check your registration data.',
+                                      onPressed: () {
+                                        Navigator.pop(context);
                                       });
                                 }
                               }
@@ -359,7 +282,30 @@ class _AuthPageState extends State<AuthPage> {
     );
   }
 
-  // Выводит соответствующую надпись, если пользователь уже создан или ничего, если не создан
+  // Диалоговое окно для вывода предупреждающих сообщений
+  void _showAlertDialog(
+      {required String title,
+      required String content,
+      required void Function()? onPressed}) {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text(title,
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.headline5),
+            content: Text(
+              content,
+              style: Theme.of(context).textTheme.bodyText1,
+            ),
+            actions: [
+              TextButton(onPressed: onPressed, child: const Text('OK'))
+            ],
+          );
+        });
+  }
+
+  // Вывод сообщения про демо-режим, если пользователь был создан
   Widget _demoModeAlert() {
     return widget.phone != null
         ? const Text(
@@ -367,6 +313,6 @@ class _AuthPageState extends State<AuthPage> {
             style: TextStyle(
                 fontSize: 12.0, color: Colors.red, fontWeight: FontWeight.bold),
           )
-        : const Text('');
+        : const SizedBox.shrink();
   }
 }
