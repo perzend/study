@@ -15,7 +15,7 @@ class UsersListPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: NavDrawer(),
-      appBar: AppBar(),
+      appBar: AppBar(title: const Text('List of users'), centerTitle: true,),
       body: FutureBuilder<List<Users>>(
         future: fetchUsers(http.Client()),
         builder: (context, snapshot) {
@@ -47,8 +47,8 @@ class UsersList extends StatelessWidget {
       itemCount: users.length,
       itemBuilder: (context, index) {
         return ListTile(
-          leading: Icon(Icons.account_circle),
-          title: Text('${users[index].id}. ${users[index].name}'),
+          leading: const Icon(Icons.account_circle, size: 60,),
+          title: Text('${users[index].id}. ${users[index].name}', style: Theme.of(context).textTheme.headline6,),
           subtitle: Text(users[index].email),
           onTap: () {
             Navigator.push(

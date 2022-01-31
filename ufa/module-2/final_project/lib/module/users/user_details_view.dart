@@ -10,33 +10,84 @@ class UserDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: Text(user.name),
+        centerTitle: true,
+      ),
       body: Column(
         children: [
-          ListTile(
-            leading: Icon(Icons.account_circle),
-            title: Text('${user.id}. ${user.name}'),
-            subtitle: Text(user.email),
+          const Icon(Icons.account_circle, size: 120),
+          SizedBox(
+            height: 16,
           ),
-          ExpansionTile(title: Text('Address'), children: [
-            Text(user.address.street),
-            Text(user.address.suite),
-            Text(user.address.city),
-            Text(user.address.zipcode),
-            ExpansionTile(title: Text('Geoposition'), children: [
-              Text(user.address.geo.lat),
-              Text(user.address.geo.lng),
-
-            ],)
-
-          ],),
-          Text(user.phone),
-          Text(user.website),
-          ExpansionTile(title: Text('Company'), children: [
-            Text(user.company.name),
-            Text(user.company.catchPhrase),
-            Text(user.company.bs),
-          ],),
+          Padding(
+            padding: const EdgeInsets.only(left: 16.0),
+            child: Row(children: [
+              const Icon(
+                Icons.email,
+                size: 30,
+              ),
+              const SizedBox(
+                width: 26.0,
+              ),
+              Text(
+                user.email,
+                style: TextStyle(fontSize: 16),
+              )
+            ]),
+          ),
+          ExpansionTile(
+            leading: const Icon(
+              Icons.place,
+              size: 30,
+              color: Colors.black,
+            ),
+            title: Text(
+                '${user.address.street}, ${user.address.suite}, ${user.address.city}, ${user.address.zipcode}'),
+            children: [
+              Text(
+                  'geoPosition: (${user.address.geo.lat}; ${user.address.geo.lng})'),
+            ],
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 16.0),
+            child: Row(
+              children: [
+                const Icon(Icons.phone, size: 30),
+                const SizedBox(width: 26.0),
+                Text(
+                  user.phone,
+                  style: TextStyle(fontSize: 16),
+                )
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 16.0, top: 8),
+            child: Row(
+              children: [
+                const Icon(Icons.web, size: 30),
+                const SizedBox(width: 26.0),
+                Text(
+                  user.website,
+                  style: TextStyle(fontSize: 16),
+                )
+              ],
+            ),
+          ),
+          ExpansionTile(
+            leading: const Icon(Icons.business, size: 30, color: Colors.black),
+            title: Text(user.company.name),
+            children: [
+              Text('catchPhrase: ${user.company.catchPhrase}'),
+              Text('bs: ${user.company.bs}'),
+            ],
+          ),
+          const SizedBox(height: 16),
+          Text(
+            'Tasks',
+            style: Theme.of(context).textTheme.headline6,
+          ),
           UserToDosList(userId: user.id),
         ],
       ),

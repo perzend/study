@@ -43,7 +43,7 @@ class ToDosList extends StatelessWidget {
           return CheckboxListTile(
             value: toDoS[index].completed,
             onChanged: (val) {},
-            title: Text('${index+1}.${toDoS[index].title}'),
+            title: Text('${index+1}. ${toDoS[index].title}'),
           );
         },
       ),
