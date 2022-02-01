@@ -1,3 +1,4 @@
+import 'package:final_project/constants/string.dart';
 import 'package:final_project/routes/routes.dart';
 import 'package:final_project/services/secure_storage.dart';
 import 'package:flutter/material.dart';
@@ -193,19 +194,23 @@ class _AuthPageState extends State<AuthPage> {
                             onPressed: () {
                               if (_loginButtonEnabled) {
                                 if (_phoneController.text != widget.phone) {
+                                  print(widget.phone);
+                                  print(widget.pwd);
+
                                   _showAlertDialog(
-                                      title: 'Login error!',
-                                      content:
-                                          'The phone number is entered incorrectly or does not exist. Please try again.',
+                                      title: loginAlertMessage['title'] ??
+                                          valueIsNull,
+                                      content: loginAlertMessage['content'] ??
+                                          valueIsNull,
                                       onPressed: () {
                                         Navigator.pop(context);
                                       });
                                 } else {
                                   if (_pwdController.text != widget.pwd) {
                                     _showAlertDialog(
-                                        title: 'Password error!',
+                                        title: pwdAlertMessage['title']??valueIsNull,
                                         content:
-                                            'Invalid password entered. Please try again.',
+                                        pwdAlertMessage['title']??valueIsNull,
                                         onPressed: () {
                                           Navigator.pop(context);
                                         });
@@ -247,9 +252,9 @@ class _AuthPageState extends State<AuthPage> {
                                   _secureStorage.writeSecureData(
                                       'pwd', _pwdController.text);
                                   _showAlertDialog(
-                                      title: 'Registration was successful!',
+                                      title: registrationSuccessAlertMessage['title'] ?? valueIsNull,
                                       content:
-                                          'Now you will be redirected to the main page of the application.',
+                                      registrationSuccessAlertMessage['content'] ?? valueIsNull,
                                       onPressed: () {
                                         _secureStorage.writeSecureData(
                                             'login_status', 'isOK');
@@ -258,8 +263,8 @@ class _AuthPageState extends State<AuthPage> {
                                       });
                                 } else {
                                   _showAlertDialog(
-                                      title: 'Registration failed!',
-                                      content: 'Check your registration data.',
+                                      title: registrationFailedAlertMessage['title'] ?? valueIsNull,
+                                      content: registrationFailedAlertMessage['content'] ?? valueIsNull,
                                       onPressed: () {
                                         Navigator.pop(context);
                                       });
