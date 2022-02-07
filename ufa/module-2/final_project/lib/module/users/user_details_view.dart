@@ -16,7 +16,15 @@ class UserDetails extends StatelessWidget {
       ),
       body: Column(
         children: [
-          const Icon(Icons.account_circle, size: 120),
+          SizedBox(
+            height: 16,
+          ),
+          CircleAvatar(
+            radius: 80,
+            backgroundImage: NetworkImage(
+                'https://randomuser.me/api/portraits/men/${user.id}.jpg'),
+            backgroundColor: Colors.red,
+          ),
           SizedBox(
             height: 16,
           ),

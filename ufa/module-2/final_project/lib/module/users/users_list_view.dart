@@ -1,5 +1,6 @@
 import 'package:final_project/module/users/user_details_view.dart';
 import 'package:final_project/widgets/drawer.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -15,7 +16,10 @@ class UsersListPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: NavDrawer(),
-      appBar: AppBar(title: const Text('List of users'), centerTitle: true,),
+      appBar: AppBar(
+        title: const Text('List of users'),
+        centerTitle: true,
+      ),
       body: FutureBuilder<List<Users>>(
         future: fetchUsers(http.Client()),
         builder: (context, snapshot) {
@@ -41,14 +45,32 @@ class UsersList extends StatelessWidget {
 
   final List<Users> users;
 
+  // String _createAvatarName(int userID, String userName) {
+  //
+  //   String avatarName;
+  //  avatarName = userID.toString() + userName.
+  //
+  //
+  //   return avatarName;
+  // }
+
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
       itemCount: users.length,
       itemBuilder: (context, index) {
         return ListTile(
-          leading: const Icon(Icons.account_circle, size: 60,),
-          title: Text('${users[index].id}. ${users[index].name}', style: Theme.of(context).textTheme.headline6,),
+          leading: CircleAvatar(
+            radius: 30,
+            backgroundImage: NetworkImage(
+                'https://randomuser.me/api/portraits/men/${users[index].id}.jpg'),
+            backgroundColor: Colors.red,
+          ),
+          //const Icon(Icons.account_circle, size: 60,),
+          title: Text(
+            '${users[index].id}. ${users[index].name}',
+            style: Theme.of(context).textTheme.headline6,
+          ),
           subtitle: Text(users[index].email),
           onTap: () {
             Navigator.push(
